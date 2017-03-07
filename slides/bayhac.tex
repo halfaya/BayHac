@@ -1,0 +1,105 @@
+\documentclass{beamer}
+% \usefonttheme{professionalfonts}
+% \setmainfont{XITS}
+% \setmathfont{XITS Math}
+\usepackage{agda}
+\usepackage{catchfilebetweentags}
+\usetheme{CambridgeUS}
+\usecolortheme{seahorse}
+
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage[greek,english]{babel}
+
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{autofe}
+
+%Information to be included in the title page:
+\title{Dependent Types in GHC}
+\author{John Leo}
+\institute{Halfaya Research}
+\date{April 8, 2017}
+ 
+\begin{document}
+ 
+\frame{\titlepage}
+ 
+\begin{frame}\frametitle{References}
+\begin{itemize}
+\item Pointer to this talk on github
+\item Pointer to references
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{What are Dependent Types?}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{nat}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{vec}
+\end{frame}
+
+\begin{frame}\frametitle{Vector Append}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{plus}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{append}
+\end{frame}
+
+\begin{frame}\frametitle{Vector Lookup}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{fin}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{lookup}
+\end{frame}
+
+\begin{frame}\frametitle{Some Basic Types}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{bool}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{eq}
+\end{frame}
+
+\begin{frame}\frametitle{Vector Lookup 2}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{lt}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{lookup2}
+\end{frame}
+
+\begin{frame}\frametitle{Dependent Types}
+Advantages over other types  
+\end{frame}
+
+\begin{frame}\frametitle{Applications}
+\begin{itemize}
+\item Better correctness guarantees for software.
+\item Mechanical verification of mathematics.
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Dependent Types are Not New}
+Timeline  
+\end{frame}
+
+\begin{frame}\frametitle{The Golden Age is Now}
+\begin{itemize}
+\item DeepSpec, etc.
+\item BigProof, etc.
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Robet Harper Quote}
+\end{frame}
+
+\begin{frame}\frametitle{Dependent Types in Haskell}
+Richard Eisenberg's PhD Thesis  
+\begin{enumerate}
+\item Introduction
+\item Preliminaries
+\item Motivation
+\item Dependent Haskell
+\item PICO: The Intermediate Language
+\item Type Inference and Elaboration, or how to BAKE a PICO
+\item Implementation
+\item Related and Future Work
+\end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{}
+\end{frame}
+
+\begin{frame}\frametitle{}
+\end{frame}
+
+\end{document}
