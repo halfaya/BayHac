@@ -54,18 +54,22 @@
 \>\AgdaKeyword{data} \AgdaDatatype{Fin} \AgdaSymbol{:} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaPrimitiveType{Set} \AgdaKeyword{where}\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
-\>[2]\AgdaInductiveConstructor{zero} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{n} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{\}} \<[31]%
-\>[31]\AgdaSymbol{→} \AgdaDatatype{Fin} \AgdaSymbol{(}\AgdaInductiveConstructor{suc} \AgdaBound{n}\AgdaSymbol{)}\<%
+\>[2]\AgdaInductiveConstructor{zero} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{n} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{\}} \<[25]%
+\>[25]\AgdaSymbol{→} \AgdaDatatype{Fin} \AgdaSymbol{(}\AgdaInductiveConstructor{suc} \AgdaBound{n}\AgdaSymbol{)}\<%
 \\
 \>[0]\AgdaIndent{2}{}\<[2]%
 \>[2]\AgdaInductiveConstructor{suc} \<[7]%
-\>[7]\AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{n} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{m} \AgdaSymbol{:} \AgdaDatatype{Fin} \AgdaBound{n}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaDatatype{Fin} \AgdaSymbol{(}\AgdaInductiveConstructor{suc} \AgdaBound{n}\AgdaSymbol{)}\<%
+\>[7]\AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{n} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaDatatype{Fin} \AgdaBound{n} \AgdaSymbol{→} \AgdaDatatype{Fin} \AgdaSymbol{(}\AgdaInductiveConstructor{suc} \AgdaBound{n}\AgdaSymbol{)}\<%
 \end{code}
 %</fin>
 
 %<*lookup>
 \begin{code}%
 \>\AgdaFunction{lookup} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{A} \AgdaSymbol{:} \AgdaPrimitiveType{Set}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{\{}\AgdaBound{n} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaDatatype{Fin} \AgdaBound{n} \AgdaSymbol{→} \AgdaDatatype{Vec} \AgdaBound{A} \AgdaBound{n} \AgdaSymbol{→} \AgdaBound{A}\<%
+\\
+\>\AgdaFunction{lookup} \AgdaSymbol{()} \<[15]%
+\>[15]\AgdaInductiveConstructor{[]} \<[19]%
+\>[19]\AgdaComment{{-}{-} can be omitted}\<%
 \\
 \>\AgdaFunction{lookup} \AgdaInductiveConstructor{zero} \<[15]%
 \>[15]\AgdaSymbol{(}\AgdaBound{x} \AgdaInductiveConstructor{::} \AgdaSymbol{\_} \AgdaSymbol{)} \AgdaSymbol{=} \AgdaBound{x}\<%
@@ -100,7 +104,7 @@
 \begin{code}%
 \>\AgdaFunction{\_<\_} \AgdaSymbol{:} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaDatatype{Bool}\<%
 \\
-\>\AgdaBound{m} \<[6]%
+\>\AgdaSymbol{\_} \<[6]%
 \>[6]\AgdaFunction{<} \AgdaInductiveConstructor{zero} \<[14]%
 \>[14]\AgdaSymbol{=} \AgdaInductiveConstructor{false}\<%
 \\
@@ -118,7 +122,9 @@
 \>[2]\AgdaIndent{10}{}\<[10]%
 \>[10]\AgdaSymbol{(}\AgdaBound{m} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{m} \AgdaFunction{<} \AgdaBound{n} \AgdaDatatype{≡} \AgdaInductiveConstructor{true} \AgdaSymbol{→} \AgdaDatatype{Vec} \AgdaBound{A} \AgdaBound{n} \AgdaSymbol{→} \AgdaBound{A}\<%
 \\
-\>\AgdaFunction{lookup'} \AgdaSymbol{\_} \AgdaSymbol{()} \AgdaInductiveConstructor{[]}\<%
+\>\AgdaFunction{lookup'} \AgdaSymbol{\_} \<[16]%
+\>[16]\AgdaSymbol{()} \<[21]%
+\>[21]\AgdaInductiveConstructor{[]}\<%
 \\
 \>\AgdaFunction{lookup'} \AgdaInductiveConstructor{zero} \<[16]%
 \>[16]\AgdaInductiveConstructor{refl} \AgdaSymbol{(}\AgdaBound{x} \AgdaInductiveConstructor{::} \AgdaSymbol{\_} \AgdaSymbol{)} \AgdaSymbol{=} \AgdaBound{x}\<%

@@ -79,7 +79,23 @@ Timeline
 \end{itemize}
 \end{frame}
 
-\begin{frame}\frametitle{Robet Harper Quote}
+\begin{frame}\frametitle{Killer Apps for Typed Functional Programming}
+\begin{itemize}
+\item Big Data
+\item Program Correctness
+\item Security
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Robert Harper}
+\begin{quote}
+Eventually all the arbitrary programming languages are going to be just swept away with the oceans,
+and we will have the permanance of constructive, intuistionistic type theory as the master theory
+of computation---without doubt, in my mind, no question.  So, from my point of view---this is a personal
+statement---working in anything else is a waste of time.
+\end{quote}
+
+CMU Homotopy Type Theory lecture 1, 52:56--53:20.
 \end{frame}
 
 \begin{frame}\frametitle{Dependent Types in Haskell}
@@ -96,10 +112,146 @@ Richard Eisenberg's PhD Thesis
 \end{enumerate}
 \end{frame}
 
-\begin{frame}\frametitle{}
+\begin{frame}[fragile]\frametitle{Haskell Nat}
+\begin{semiverbatim}
+\{-# LANGUAGE ExplicitForAll, GADTs, TypeFamilies,
+             TypeOperators, TypeInType #-\}
+import Data.Kind (Type)
+
+data Nat :: Type where
+  Zero :: Nat
+  Succ :: Nat -> Nat
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{nat}
 \end{frame}
 
-\begin{frame}\frametitle{}
+\begin{frame}[fragile]\frametitle{Haskell Vector}
+\begin{semiverbatim}
+data Vec :: Type -> Nat -> Type where
+  VNil  :: ∀ (a :: Type). Vec a 'Zero
+  VCons :: ∀ (a :: Type)(n :: Nat).
+    a -> Vec a n -> Vec a ('Succ n)
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{vec}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Haskell Plus}
+\begin{semiverbatim}
+type family (m :: Nat) + (n :: Nat) where
+  Zero    + n = n
+  'Succ m + n = 'Succ (m + n)
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{plus}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Haskell Append}
+\begin{semiverbatim}
+(++) :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
+        Vec a m -> Vec a n -> Vec a (m + n)
+VNil      ++ v = v
+VCons x u ++ v = VCons x (u ++ v)
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{append}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Haskell Fin}
+\begin{semiverbatim}
+data Fin :: Nat -> Type where
+  FZero :: ∀ (n :: Nat).          Fin (Succ n)
+  FSucc :: ∀ (n :: Nat). Fin n -> Fin (Succ n)
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{fin}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Haskell Lookup}
+\begin{semiverbatim}
+lookup :: ∀ (a :: Type)(n :: Nat). Fin n -> Vec a n -> a
+lookup FZero     (VCons x _)  = x
+lookup (FSucc n) (VCons _ xs) = lookup n xs
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{lookup}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Haskell $\equiv$ and $<$}
+\begin{semiverbatim}
+data (a :: k) :~: (b :: k) where
+  Refl :: ∀ (k :: Type)(a :: k). a :~: a
+
+type family (m :: Nat) < (n :: Nat) where
+  _         < Zero      = False
+  'Zero     < ('Succ _) = True
+  ('Succ m) < ('Succ n) = m < n
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{eq}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{lt}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Haskell Attempt at Lookup'}
+\begin{semiverbatim}
+lookupBad :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
+             m -> m < n :~: True -> Vec a n -> a
+
+  • Expected a type, but ‘m’ has kind ‘Nat’
+  • In the type signature:
+      lookupBad :: ∀ (a :: Type) (m :: Nat) (n :: Nat).
+                   m -> (m < n) :~: True -> Vec a n -> a
+
+> :k (->)
+(->) :: Type -> Type -> Type
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{lookup2}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Singleton Nat}
+\begin{semiverbatim}
+data SNat :: Nat -> Type where
+  SZero :: SNat 'Zero
+  SSucc :: ∀ (n :: Nat). SNat n -> SNat ('Succ n)
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Haskell Lookup'}
+\begin{semiverbatim}
+lookup' :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
+           SNat m -> m < n :~: True -> Vec a n -> a
+lookup' SZero     Refl (VCons x _)  = x
+lookup' (SSucc m) Refl (VCons _ xs) = lookup' m Refl xs
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{lookup2}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Another Variation}
+\begin{semiverbatim}
+nth :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
+       (m < n) ~ 'True => SNat m -> Vec a n -> a
+nth SZero     (VCons a _)  = a
+nth (SSucc m) (VCons _ as) = nth m as
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Lookup' vs Nth}
+\begin{semiverbatim}
+lookup' :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
+           SNat m -> m < n :~: True -> Vec a n -> a
+lookup' _         _     VNil        = undefined
+lookup' SZero     Refl (VCons x _)  = x
+lookup' (SSucc m) Refl (VCons _ xs) = lookup' m Refl xs
+
+nth :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
+       (m < n) ~ 'True => SNat m -> Vec a n -> a
+nth _         VNil         =  undefined
+nth SZero     (VCons a _)  = a
+nth (SSucc m) (VCons _ as) = nth m as
+  • Couldn't match type ‘'True’ with ‘'False’
+    Inaccessible code in
+      a pattern with constructor: VNil :: ∀ a. Vec a 'Zero,
+      in an equation for ‘nth’
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{}
+\begin{semiverbatim}
+\end{semiverbatim}
 \end{frame}
 
 \end{document}

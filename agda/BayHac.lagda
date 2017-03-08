@@ -34,14 +34,15 @@ _++_ : {A : Set} → {m n : ℕ} →
 %<*fin>
 \begin{code}
 data Fin : ℕ → Set where
-  zero : {n : ℕ}               → Fin (suc n)
-  suc  : {n : ℕ} → (m : Fin n) → Fin (suc n)
+  zero : {n : ℕ}         → Fin (suc n)
+  suc  : {n : ℕ} → Fin n → Fin (suc n)
 \end{code}
 %</fin>
 
 %<*lookup>
 \begin{code}
 lookup : {A : Set} → {n : ℕ} → Fin n → Vec A n → A
+lookup ()      []  -- can be omitted
 lookup zero    (x :: _ ) = x
 lookup (suc n) (_ :: xs) = lookup n xs
 \end{code}
@@ -65,7 +66,7 @@ data _≡_ {A : Set} : A → A → Set where
 %<*lt>
 \begin{code}
 _<_ : ℕ → ℕ → Bool
-m     < zero  = false
+_     < zero  = false
 zero  < suc n = true
 suc m < suc n = m < n
 \end{code}
@@ -75,7 +76,7 @@ suc m < suc n = m < n
 \begin{code}
 lookup' : {A : Set} → {n : ℕ} →
           (m : ℕ) → m < n ≡ true → Vec A n → A
-lookup' _ () []
+lookup' _       ()   []
 lookup' zero    refl (x :: _ ) = x
 lookup' (suc m) p    (_ :: xs) = lookup' m p xs
 \end{code}
