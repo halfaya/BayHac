@@ -57,26 +57,26 @@
 \ExecuteMetaData[../agda/latex/BayHac.tex]{lookup2}
 \end{frame}
 
-\begin{frame}\frametitle{Dependent Types}
-Advantages over other types  
-\end{frame}
-
-\begin{frame}\frametitle{Applications}
+\begin{frame}\frametitle{Why Use Dependent Types?}
 \begin{itemize}
-\item Better correctness guarantees for software.
-\item Mechanical verification of mathematics.
+\item More expressive
+\item More precise
+\item Propositions as Types (PAT, Curry-Howard Correspondence):
+\begin{itemize}
+\item Universal Quantification ($\forall$) corresponds to $\Pi$ types.\\
+  $\Pi_{x : A} B(x)$ or $(x : A) \to B_x$.
+\item Existential Quantification ($\exists$) corresponds to $\Sigma$ types.\\
+  $\Sigma_{x : A} B(x)$ or $(x : A) \times B_x$.
+\end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}\frametitle{Dependent Types are Not New}
-Timeline  
-\end{frame}
-
-\begin{frame}\frametitle{The Golden Age is Now}
-\begin{itemize}
-\item DeepSpec, etc.
-\item BigProof, etc.
-\end{itemize}
+\column{0.5\textwidth}
+x
+\column{0.5\textwidth}
+y
+\end{columns}
 \end{frame}
 
 \begin{frame}\frametitle{Killer Apps for Typed Functional Programming}
@@ -87,10 +87,19 @@ Timeline
 \end{itemize}
 \end{frame}
 
+\begin{frame}\frametitle{The Golden Age is Now}
+\begin{itemize}
+\item Better correctness guarantees for software.
+\item Mechanical verification of mathematics.
+\item DeepSpec, etc.
+\item BigProof, etc.
+\end{itemize}
+\end{frame}
+
 \begin{frame}\frametitle{Robert Harper}
 \begin{quote}
 Eventually all the arbitrary programming languages are going to be just swept away with the oceans,
-and we will have the permanance of constructive, intuistionistic type theory as the master theory
+and we will have the permanence of constructive, intuistionistic type theory as the master theory
 of computation---without doubt, in my mind, no question.  So, from my point of view---this is a personal
 statement---working in anything else is a waste of time.
 \end{quote}

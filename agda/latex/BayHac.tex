@@ -102,16 +102,16 @@
 
 %<*lt>
 \begin{code}%
-\>\AgdaFunction{\_<\_} \AgdaSymbol{:} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaDatatype{Bool}\<%
+\>\AgdaFunction{\_\textless\_} \AgdaSymbol{:} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaDatatype{Bool}\<%
 \\
 \>\AgdaSymbol{\_} \<[6]%
-\>[6]\AgdaFunction{<} \AgdaInductiveConstructor{zero} \<[14]%
+\>[6]\AgdaFunction{\textless} \AgdaInductiveConstructor{zero} \<[14]%
 \>[14]\AgdaSymbol{=} \AgdaInductiveConstructor{false}\<%
 \\
 \>\AgdaInductiveConstructor{zero} \<[6]%
-\>[6]\AgdaFunction{<} \AgdaInductiveConstructor{suc} \AgdaBound{n} \AgdaSymbol{=} \AgdaInductiveConstructor{true}\<%
+\>[6]\AgdaFunction{\textless} \AgdaInductiveConstructor{suc} \AgdaBound{n} \AgdaSymbol{=} \AgdaInductiveConstructor{true}\<%
 \\
-\>\AgdaInductiveConstructor{suc} \AgdaBound{m} \AgdaFunction{<} \AgdaInductiveConstructor{suc} \AgdaBound{n} \AgdaSymbol{=} \AgdaBound{m} \AgdaFunction{<} \AgdaBound{n}\<%
+\>\AgdaInductiveConstructor{suc} \AgdaBound{m} \AgdaFunction{\textless} \AgdaInductiveConstructor{suc} \AgdaBound{n} \AgdaSymbol{=} \AgdaBound{m} \AgdaFunction{\textless} \AgdaBound{n}\<%
 \end{code}
 %</lt>
 
@@ -120,7 +120,7 @@
 \>\AgdaFunction{lookup'} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{A} \AgdaSymbol{:} \AgdaPrimitiveType{Set}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{\{}\AgdaBound{n} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{\}} \AgdaSymbol{→}\<%
 \\
 \>[2]\AgdaIndent{10}{}\<[10]%
-\>[10]\AgdaSymbol{(}\AgdaBound{m} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{m} \AgdaFunction{<} \AgdaBound{n} \AgdaDatatype{≡} \AgdaInductiveConstructor{true} \AgdaSymbol{→} \AgdaDatatype{Vec} \AgdaBound{A} \AgdaBound{n} \AgdaSymbol{→} \AgdaBound{A}\<%
+\>[10]\AgdaSymbol{(}\AgdaBound{m} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaBound{m} \AgdaFunction{\textless} \AgdaBound{n} \AgdaDatatype{≡} \AgdaInductiveConstructor{true} \AgdaSymbol{→} \AgdaDatatype{Vec} \AgdaBound{A} \AgdaBound{n} \AgdaSymbol{→} \AgdaBound{A}\<%
 \\
 \>\AgdaFunction{lookup'} \AgdaSymbol{\_} \<[16]%
 \>[16]\AgdaSymbol{()} \<[21]%
