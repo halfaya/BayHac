@@ -1,4 +1,4 @@
-\documentclass{beamer}
+ \documentclass{beamer}
 % \usefonttheme{professionalfonts}
 % \setmainfont{XITS}
 % \setmathfont{XITS Math}
@@ -15,6 +15,8 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{autofe}
 
+\beamertemplatenavigationsymbolsempty
+
 %Information to be included in the title page:
 \title{Dependent Types in GHC}
 \author{John Leo}
@@ -26,9 +28,13 @@
 \frame{\titlepage}
  
 \begin{frame}\frametitle{References}
+This talk:
 \begin{itemize}
-\item Pointer to this talk on github
-\item Pointer to references
+\item https://github.com/halfaya/BayHac
+\end{itemize}
+References:
+\begin{itemize}
+\item https://github.com/halfaya/BayHac
 \end{itemize}
 \end{frame}
 
@@ -59,8 +65,7 @@
 
 \begin{frame}\frametitle{Why Use Dependent Types?}
 \begin{itemize}
-\item More expressive
-\item More precise
+\item More expressive and precise
 \item Propositions as Types (PAT, Curry-Howard Correspondence):
 \begin{itemize}
 \item Universal Quantification ($\forall$) corresponds to $\Pi$ types.\\
@@ -72,19 +77,39 @@
 \end{frame}
 
 \begin{frame}\frametitle{Dependent Types are Not New}
+\begin{columns}
 \column{0.5\textwidth}
-x
+\begin{description}[align=right]
+\item[1971] \textcolor{blue}{System F}
+\item[1971] \textcolor{blue}{Martin-L\"of Type Theory}
+\item[1972] \textcolor{brown}{LCF/ML}
+\item[1978] \textcolor{blue}{Hindley-Milner (H 1969)}
+\item[1979] \textcolor{blue}{Constructive math and computer programming}
+\item[1982] \textcolor{blue}{Damas-Milner}
+\item[1983] \textcolor{brown}{Standard ML}
+\item[1984] \textcolor{blue}{Calculus of Constructions}
+\item[1984] \textcolor{red}{NuPrl}
+\item[1985] \textcolor{brown}{Miranda}
+\item[1987] \textcolor{brown}{Caml}
+\end{description}
+ 
 \column{0.5\textwidth}
-y
+\begin{description}[align=right]
+\item[1988] \textcolor{blue}{CiC}
+\item[1989] \textcolor{red}{Coq}
+\item[1990] \textcolor{brown}{Haskell}
+\item[1990] \textcolor{blue}{Nordstr\"om, et al}, \textcolor{red}{ALF}
+\item[1998] \textcolor{red}{Cayenne}
+\item[1999] \textcolor{red}{Agda 1}
+\item[1991] \textcolor{brown}{Caml Light}
+\item[1996] \textcolor{brown}{OCaml}
+\item[2007] \textcolor{red}{Agda 2}
+\item[2011] \textcolor{red}{Idris}
+\item[2013] \textcolor{blue}{Homotopy Type Theory}
+\item[2013] \textcolor{red}{Lean}
+\item[2015] \textcolor{blue}{Cubical Type Theory}
+\end{description}
 \end{columns}
-\end{frame}
-
-\begin{frame}\frametitle{Killer Apps for Typed Functional Programming}
-\begin{itemize}
-\item Big Data
-\item Program Correctness
-\item Security
-\end{itemize}
 \end{frame}
 
 \begin{frame}\frametitle{The Golden Age is Now}
@@ -107,6 +132,14 @@ statement---working in anything else is a waste of time.
 CMU Homotopy Type Theory lecture 1, 52:56--53:20.
 \end{frame}
 
+\begin{frame}\frametitle{Killer Apps for Typed Functional Programming}
+\begin{itemize}
+\item Big Data
+\item Program Correctness
+\item Security
+\end{itemize}
+\end{frame}
+
 \begin{frame}\frametitle{Dependent Types in Haskell}
 Richard Eisenberg's PhD Thesis  
 \begin{enumerate}
@@ -121,7 +154,21 @@ Richard Eisenberg's PhD Thesis
 \end{enumerate}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Haskell Nat}
+\begin{frame}\frametitle{Time Line}
+From Richard Eisenberg's Blog:
+
+\medskip
+
+\textbf{When can we expect dependent types in GHC?}
+
+\medskip
+
+The short answer:\\
+GHC 8.4 (2018) at the very earliest.\\
+More likely 8.6 or 8.8 (2019-20).
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Nat}
 \begin{semiverbatim}
 \{-# LANGUAGE ExplicitForAll, GADTs, TypeFamilies,
              TypeOperators, TypeInType #-\}
@@ -134,7 +181,7 @@ data Nat :: Type where
 \ExecuteMetaData[../agda/latex/BayHac.tex]{nat}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Haskell Vector}
+\begin{frame}[fragile]\frametitle{Vector}
 \begin{semiverbatim}
 data Vec :: Type -> Nat -> Type where
   VNil  :: ∀ (a :: Type). Vec a 'Zero
@@ -144,7 +191,7 @@ data Vec :: Type -> Nat -> Type where
 \ExecuteMetaData[../agda/latex/BayHac.tex]{vec}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Haskell Plus}
+\begin{frame}[fragile]\frametitle{Plus}
 \begin{semiverbatim}
 type family (m :: Nat) + (n :: Nat) where
   Zero    + n = n
@@ -153,7 +200,7 @@ type family (m :: Nat) + (n :: Nat) where
 \ExecuteMetaData[../agda/latex/BayHac.tex]{plus}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Haskell Append}
+\begin{frame}[fragile]\frametitle{Append}
 \begin{semiverbatim}
 (++) :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
         Vec a m -> Vec a n -> Vec a (m + n)
@@ -163,7 +210,7 @@ VCons x u ++ v = VCons x (u ++ v)
 \ExecuteMetaData[../agda/latex/BayHac.tex]{append}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Haskell Fin}
+\begin{frame}[fragile]\frametitle{Fin}
 \begin{semiverbatim}
 data Fin :: Nat -> Type where
   FZero :: ∀ (n :: Nat).          Fin (Succ n)
@@ -172,7 +219,7 @@ data Fin :: Nat -> Type where
 \ExecuteMetaData[../agda/latex/BayHac.tex]{fin}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Haskell Lookup}
+\begin{frame}[fragile]\frametitle{Lookup}
 \begin{semiverbatim}
 lookup :: ∀ (a :: Type)(n :: Nat). Fin n -> Vec a n -> a
 lookup FZero     (VCons x _)  = x
@@ -181,7 +228,7 @@ lookup (FSucc n) (VCons _ xs) = lookup n xs
 \ExecuteMetaData[../agda/latex/BayHac.tex]{lookup}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Haskell $\equiv$ and $<$}
+\begin{frame}[fragile]\frametitle{$\equiv$ and $<$}
 \begin{semiverbatim}
 data (a :: k) :~: (b :: k) where
   Refl :: ∀ (k :: Type)(a :: k). a :~: a
@@ -195,7 +242,7 @@ type family (m :: Nat) < (n :: Nat) where
 \ExecuteMetaData[../agda/latex/BayHac.tex]{lt}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Haskell Attempt at Lookup'}
+\begin{frame}[fragile]\frametitle{Attempt at Lookup'}
 \begin{semiverbatim}
 lookupBad :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
              m -> m < n :~: True -> Vec a n -> a
@@ -219,7 +266,7 @@ data SNat :: Nat -> Type where
 \end{semiverbatim}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Haskell Lookup'}
+\begin{frame}[fragile]\frametitle{Lookup'}
 \begin{semiverbatim}
 lookup' :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
            SNat m -> m < n :~: True -> Vec a n -> a
