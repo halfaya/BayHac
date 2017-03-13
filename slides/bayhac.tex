@@ -34,7 +34,7 @@ This talk:
 \end{itemize}
 References:
 \begin{itemize}
-\item https://github.com/halfaya/BayHac
+\item https://github.com/halfaya/BayHac/blob/master/references.md
 \end{itemize}
 \end{frame}
 
@@ -114,10 +114,16 @@ References:
 
 \begin{frame}\frametitle{The Golden Age is Now}
 \begin{itemize}
-\item Better correctness guarantees for software.
-\item Mechanical verification of mathematics.
-\item DeepSpec, etc.
-\item BigProof, etc.
+\item Better correctness guarantees for software.\\
+  CompCert, DeepSpec, etc.
+\item Mechanical verification of mathematics.\\
+  Four Color Theorem, Feit-Thompson, BigProof
+\item Increased use of FP in industry.\\
+  Big Data, Finance, Security
+\item Natural Language Processing.\\
+  Grammatical Framework
+\item Theoretical work.\\
+  HoTT, Cubical Type Theory, Category Theory and FP, etc.
 \end{itemize}
 \end{frame}
 
@@ -130,14 +136,6 @@ statement---working in anything else is a waste of time.
 \end{quote}
 
 CMU Homotopy Type Theory lecture 1, 52:56--53:20.
-\end{frame}
-
-\begin{frame}\frametitle{Killer Apps for Typed Functional Programming}
-\begin{itemize}
-\item Big Data
-\item Program Correctness
-\item Security
-\end{itemize}
 \end{frame}
 
 \begin{frame}\frametitle{Dependent Types in Haskell}
@@ -305,9 +303,58 @@ nth (SSucc m) (VCons _ as) = nth m as
 \end{semiverbatim}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{}
+\begin{frame}[fragile]\frametitle{Vectors in Dependent Haskell}
 \begin{semiverbatim}
+type family (m :: Nat) + (n :: Nat) where
+  Zero    + n = n
+  'Succ m + n = 'Succ (m + n)
+
+(+) :: Nat -> Nat -> Nat
+Zero   + m = m
+Succ n + m = Succ (n + m)
 \end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{plus}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Append}
+\begin{semiverbatim}
+(++) :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
+        Vec a m -> Vec a n -> Vec a (m + n)
+VNil      ++ v = v
+VCons x u ++ v = VCons x (u ++ v)
+
+(++) :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
+        Vec a m -> Vec a n -> Vec a (m '+ n)
+VNil      ++ v = v
+VCons x u ++ v = VCons x (u ++ v)
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{append}
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Lookup}
+\begin{semiverbatim}
+lookup' :: ∀ (a :: Type)(m :: Nat)(n :: Nat).
+           SNat m -> m < n :~: True -> Vec a n -> a
+lookup' SZero     Refl (VCons x _)  = x
+lookup' (SSucc m) Refl (VCons _ xs) = lookup' m Refl xs
+
+lookup' :: ∀ (a :: Type)(n :: Nat). PI (m :: Nat) ->
+           m -> m < n :~: True -> Vec a n -> a
+lookup' Zero     Refl (VCons x _)  = x
+lookup' (Succ m) Refl (VCons _ xs) = lookup' m Refl xs
+
+\end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{lookup2}
+\end{frame}
+
+\begin{frame}\frametitle{Conclusion}
+This is just a tiny taste.
+
+\medskip  
+
+See Richard's thesis and the other references for much more.  
 \end{frame}
 
 \end{document}

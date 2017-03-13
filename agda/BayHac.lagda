@@ -76,7 +76,7 @@ suc m < suc n = m < n
 \begin{code}
 lookup' : {A : Set} → {n : ℕ} →
           (m : ℕ) → m < n ≡ true → Vec A n → A
-lookup' _       ()   []
+lookup' _       ()   []  -- required
 lookup' zero    refl (x :: _ ) = x
 lookup' (suc m) p    (_ :: xs) = lookup' m p xs
 \end{code}
