@@ -1,14 +1,11 @@
 name:                BayHac
 version:             0.1.0.0
--- synopsis:
--- description:
-homepage:            https://github.com/halfaya/BayHac#readme
-license:             BSD3
+homepage:            https://github.com/halfaya/BayHac
+license:             MIT
 license-file:        LICENSE
-author:              Author name here
+author:              John Leo
 maintainer:          leo@halfaya.org
 copyright:           2017 John Leo
-category:            Web
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10

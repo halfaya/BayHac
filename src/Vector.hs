@@ -1,4 +1,4 @@
-{-# LANGUAGE ExplicitForAll, GADTs, TypeFamilies, TypeOperators, TypeInType #-}
+{-# LANGUAGE UnicodeSyntax, ExplicitForAll, GADTs, TypeFamilies, TypeOperators, TypeInType #-}
 
 module Vector where
 
@@ -72,6 +72,6 @@ lookup' SZero     Refl (VCons x _)  = x
 lookup' (SSucc m) Refl (VCons _ xs) = lookup' m Refl xs
 
 nth :: ∀ (a :: Type)(m :: Nat)(n :: Nat). (m < n) ~ 'True => SNat m -> Vec a n -> a
-nth _         VNil         =  undefined
+--nth _         VNil         =  undefined
 nth SZero     (VCons a _)  = a
 nth (SSucc m) (VCons _ as) = nth m as
