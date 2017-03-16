@@ -31,6 +31,16 @@ References:
 \end{itemize}
 \end{frame}
 
+\begin{frame}\frametitle{Outline}
+\begin{itemize}
+\item Vectors in Agda
+\item Big Picture
+\item Dependent Types in Haskell
+\item Vectors in today's Haskell
+\item Vectors in Dependent Haskell
+\end{itemize}
+\end{frame}
+
 \begin{frame}\frametitle{What are Dependent Types?}
 \ExecuteMetaData[../agda/latex/BayHac.tex]{nat}
 \ExecuteMetaData[../agda/latex/BayHac.tex]{vec}
@@ -184,8 +194,8 @@ data Vec ∷ Type → Nat → Type where
 
 \begin{frame}[fragile]\frametitle{Plus}
 \begin{semiverbatim}
-type family (m ∷ Nat) + (n ∷ Nat) where
-  Zero    + n = n
+type family (m ∷ Nat) + (n ∷ Nat) ∷ Nat where
+  'Zero   + n = n
   'Succ m + n = 'Succ (m + n)
 \end{semiverbatim}
 \ExecuteMetaData[../agda/latex/BayHac.tex]{plus}
@@ -194,7 +204,7 @@ type family (m ∷ Nat) + (n ∷ Nat) where
 \begin{frame}[fragile]\frametitle{Append}
 \begin{semiverbatim}
 (++) ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-        Vec a m → Vec a n → Vec a (m + n)
+       Vec a m → Vec a n → Vec a (m + n)
 Nil    ++ v = v
 x :> u ++ v = x :> (u ++ v)
 \end{semiverbatim}
@@ -221,11 +231,11 @@ lookup (FSucc n) (_ :> xs) = lookup n xs
 
 \begin{frame}[fragile]\frametitle{$\equiv$ and $<$}
 \begin{semiverbatim}
-data (a ∷ k) :~: (b ∷ k) where
-  Refl ∷ ∀ (k ∷ Type)(a ∷ k). a :~: a
+data (a ∷ k) ≡ (b ∷ k) where
+  Refl ∷ ∀ (k ∷ Type)(a ∷ k). a ≡ a
 
-type family (m ∷ Nat) < (n ∷ Nat) where
-  _         < Zero      = False
+type family (m ∷ Nat) < (n ∷ Nat) ∷ Bool where
+  _         < 'Zero     = False
   'Zero     < ('Succ _) = True
   ('Succ m) < ('Succ n) = m < n
 \end{semiverbatim}
@@ -236,17 +246,28 @@ type family (m ∷ Nat) < (n ∷ Nat) where
 \begin{frame}[fragile]\frametitle{Attempt at Lookup'}
 \begin{semiverbatim}
 lookupBad ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-             m → m < n :~: True → Vec a n → a
+            m → m < n ≡ True → Vec a n → a
 
   • Expected a type, but ‘m’ has kind ‘Nat’
   • In the type signature:
       lookupBad ∷ ∀ (a ∷ Type) (m ∷ Nat) (n ∷ Nat).
-                   m → (m < n) :~: True → Vec a n → a
-
+                   m → (m < n) ≡ True → Vec a n → a
 > :k (→)
 (→) ∷ Type → Type → Type
 \end{semiverbatim}
 \ExecuteMetaData[../agda/latex/BayHac.tex]{lookup2}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Another Attempt}
+\begin{semiverbatim}
+  type family LookupUp (a ∷ Type) (m ∷ Nat) (n ∷ Nat)
+                       (p ∷ m < n ≡ 'True) 
+                       (v ∷ Vec a n) :: a where
+
+  LookupUp a 'Zero     ('Succ n) 'Refl (x :> _)  = x
+  LookupUp a ('Succ m) ('Succ n) p     (_ :> xs) =
+    LookupUp a m n p xs
+\end{semiverbatim}
 \end{frame}
 
 \begin{frame}[fragile]\frametitle{Singleton Nat}
@@ -260,7 +281,7 @@ data SNat ∷ Nat → Type where
 \begin{frame}[fragile]\frametitle{Lookup'}
 \begin{semiverbatim}
 lookup' ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-           SNat m → m < n :~: True → Vec a n → a
+           SNat m → m < n ≡ True → Vec a n → a
 lookup' SZero     Refl (x :> _)  = x
 lookup' (SSucc m) Refl (_ :> xs) = lookup' m Refl xs
 \end{semiverbatim}
@@ -270,7 +291,7 @@ lookup' (SSucc m) Refl (_ :> xs) = lookup' m Refl xs
 \begin{frame}[fragile]\frametitle{Another Variation}
 \begin{semiverbatim}
 nth ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-       (m < n) ~ 'True => SNat m → Vec a n → a
+      (m < n) ~ 'True => SNat m → Vec a n → a
 nth SZero     (a :> _)  = a
 nth (SSucc m) (_ :> as) = nth m as
 \end{semiverbatim}
@@ -279,13 +300,13 @@ nth (SSucc m) (_ :> as) = nth m as
 \begin{frame}[fragile]\frametitle{Lookup' vs Nth}
 \begin{semiverbatim}
 lookup' ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-           SNat m → m < n :~: True → Vec a n → a
+           SNat m → m < n ≡ True → Vec a n → a
 lookup' _         _    Nil       = undefined
 lookup' SZero     Refl (x :> _)  = x
 lookup' (SSucc m) Refl (_ :> xs) = lookup' m Refl xs
 
 nth ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-       (m < n) ~ 'True => SNat m → Vec a n → a
+      (m < n) ~ 'True => SNat m → Vec a n → a
 nth _         Nil       =  undefined
 nth SZero     (a :> _)  = a
 nth (SSucc m) (_ :> as) = nth m as
@@ -298,8 +319,8 @@ nth (SSucc m) (_ :> as) = nth m as
 
 \begin{frame}[fragile]\frametitle{Vectors in Dependent Haskell}
 \begin{semiverbatim}
-type family (m ∷ Nat) + (n ∷ Nat) where
-  Zero    + n = n
+type family (m ∷ Nat) + (n ∷ Nat) ∷ Nat where
+  'Zero   + n = n
   'Succ m + n = 'Succ (m + n)
 
 (+) ∷ Nat → Nat → Nat
@@ -312,12 +333,12 @@ Succ n + m = Succ (n + m)
 \begin{frame}[fragile]\frametitle{Append}
 \begin{semiverbatim}
 (++) ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-        Vec a m → Vec a n → Vec a (m + n)
+       Vec a m → Vec a n → Vec a (m + n)
 Nil    ++ v = v
 x :> u ++ v = x :> (u ++ v)
 
 (++) ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-        Vec a m → Vec a n → Vec a (m '+ n)
+       Vec a m → Vec a n → Vec a (m '+ n)
 Nil    ++ v = v
 x :> u ++ v = x :> (u ++ v)
 \end{semiverbatim}
@@ -327,12 +348,12 @@ x :> u ++ v = x :> (u ++ v)
 \begin{frame}[fragile]\frametitle{Lookup'}
 \begin{semiverbatim}
 lookup' ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-           SNat m → m < n :~: True → Vec a n → a
+          SNat m → m < n ≡ True → Vec a n → a
 lookup' SZero     Refl (x :> _)  = x
 lookup' (SSucc m) Refl (_ :> xs) = lookup' m Refl xs
 
 lookup' ∷ ∀ (a ∷ Type)(n ∷ Nat). Π (m ∷ Nat) →
-           m → m < n :~: True → Vec a n → a
+          m < n ≡ True → Vec a n → a
 lookup' Zero     Refl (x :> _)  = x
 lookup' (Succ m) Refl (_ :> xs) = lookup' m Refl xs
 \end{semiverbatim}

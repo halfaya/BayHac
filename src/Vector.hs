@@ -33,8 +33,8 @@ x = "a" :> "b" :> Nil
 y = "c" :> "d" :> "e" :> Nil
 z = x ++ y
 
-type family (m ∷ Nat) + (n ∷ Nat) where
-  Zero    + n = n
+type family (m ∷ Nat) + (n ∷ Nat) ∷ Nat where
+  'Zero   + n = n
   'Succ m + n = 'Succ (m + n)
 
 (++) ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat). Vec a m → Vec a n → Vec a (m + n)
@@ -52,14 +52,14 @@ lookup (FSucc n) (_ :> xs) = lookup n xs
 
 a = lookup (FSucc (FZero)) x
 
-data (a ∷ k) :~: (b ∷ k) where
-  Refl ∷ ∀ (k ∷ Type)(a ∷ k). a :~: a
+data (a ∷ k) ≡ (b ∷ k) where
+  Refl ∷ ∀ (k ∷ Type)(a ∷ k). a ≡ a
 
-infix 4 :~:
+infix 4 ≡
 infix 5 <
 
-type family (m ∷ Nat) < (n ∷ Nat) where
-  _         < Zero      = False
+type family (m ∷ Nat) < (n ∷ Nat) ∷ Bool where
+  _         < 'Zero      = False
   'Zero     < ('Succ _) = True
   ('Succ m) < ('Succ n) = m < n
 
@@ -67,9 +67,22 @@ data SNat ∷ Nat → Type where
   SZero ∷ SNat 'Zero
   SSucc ∷ ∀ (n ∷ Nat). SNat n → SNat ('Succ n)
 
---lookupBad ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat). m → m < n :~: True → Vec a n → a
+--lookupBad ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat). m → m < n ≡ True → Vec a n → a
+--lookupBad2 ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat). Nat → m < n ≡ True → Vec a n → a
+--lookupBad2 x p v = undefined
 
-lookup' ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat). SNat m → m < n :~: True → Vec a n → a
+data Dummy ∷ Nat → Type where
+  Dummy ∷ ∀ (n ∷ Nat). Dummy n
+
+lookupBad3 ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat). Dummy m → Nat → m < n ≡ True → Vec a n → a
+lookupBad3 Dummy Zero     Refl (x :> _)  = x
+--lookupBad3 Dummy (Succ m) Refl (_ :> xs) = lookupBad3 Dummy m Refl xs
+
+type family LookupUp (a ∷ Type) (m ∷ Nat) (n ∷ Nat) (p ∷ m < n ≡ 'True) (v ∷ Vec a n) :: a where
+  LookupUp a 'Zero     ('Succ n) 'Refl (x :> _)  = x
+  LookupUp a ('Succ m) ('Succ n) p     (_ :> xs) = LookupUp a m n p xs
+
+lookup' ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat). SNat m → m < n ≡ True → Vec a n → a
 lookup' _         _     Nil      = undefined
 lookup' SZero     Refl (x :> _)  = x
 lookup' (SSucc m) Refl (_ :> xs) = lookup' m Refl xs

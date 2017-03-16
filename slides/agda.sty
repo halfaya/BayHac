@@ -32,14 +32,25 @@
                         % so in the compilation output.
     \setmainfont
       [ Ligatures      = TeX
-      , BoldItalicFont = xits-bolditalic.otf
-      , BoldFont       = xits-bold.otf
-      , ItalicFont     = xits-italic.otf
+      , Extension      = .otf
+      , UprightFont    = *-regular
+      , BoldFont       = *-bold
+      , ItalicFont     = *-italic
+      , BoldItalicFont = *-bolditalic
       ]
-      {xits-regular.otf}
+      {xits}
+
+    \setsansfont
+      [ Ligatures      = TeX
+      , Extension      = .otf
+      , UprightFont    = *-regular
+      , BoldFont       = *-bold
+      , ItalicFont     = *-italic
+      , BoldItalicFont = *-bolditalic
+      ]
+      {xits}
 
     \setmathfont{xits-math.otf}
-    \setsansfont{xits-regular.otf}
     \setmonofont[Mapping=tex-text]{FreeMono.otf}
 
     % Make mathcal and mathscr appear as different.
