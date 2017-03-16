@@ -214,8 +214,8 @@ x :> u ++ v = x :> (u ++ v)
 \begin{frame}[fragile]\frametitle{Fin}
 \begin{semiverbatim}
 data Fin ∷ Nat → Type where
-  FZero ∷ ∀ (n ∷ Nat).         Fin (Succ n)
-  FSucc ∷ ∀ (n ∷ Nat). Fin n → Fin (Succ n)
+  FZero ∷ ∀ (n ∷ Nat).         Fin ('Succ n)
+  FSucc ∷ ∀ (n ∷ Nat). Fin n → Fin ('Succ n)
 \end{semiverbatim}
 \ExecuteMetaData[../agda/latex/BayHac.tex]{fin}
 \end{frame}
@@ -268,6 +268,7 @@ lookupBad ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
   LookupUp a ('Succ m) ('Succ n) p     (_ :> xs) =
     LookupUp a m n p xs
 \end{semiverbatim}
+\ExecuteMetaData[../agda/latex/BayHac.tex]{lookup2}
 \end{frame}
 
 \begin{frame}[fragile]\frametitle{Singleton Nat}

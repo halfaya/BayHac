@@ -42,8 +42,8 @@ Nil    ++ v = v
 x :> u ++ v = x :> (u ++ v)
 
 data Fin ∷ Nat → Type where
-  FZero ∷ ∀ (n ∷ Nat).          Fin (Succ n)
-  FSucc ∷ ∀ (n ∷ Nat). Fin n → Fin (Succ n)
+  FZero ∷ ∀ (n ∷ Nat).         Fin ('Succ n)
+  FSucc ∷ ∀ (n ∷ Nat). Fin n → Fin ('Succ n)
 
 lookup ∷ ∀ (a ∷ Type)(n ∷ Nat). Fin n → Vec a n → a
 --lookup  n          VNil          = undefined
