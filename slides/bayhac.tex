@@ -235,8 +235,8 @@ data (a ∷ k) ≡ (b ∷ k) where
   Refl ∷ ∀ (k ∷ Type)(a ∷ k). a ≡ a
 
 type family (m ∷ Nat) < (n ∷ Nat) ∷ Bool where
-  _         < 'Zero     = False
-  'Zero     < ('Succ _) = True
+  _         < 'Zero     = 'False
+  'Zero     < ('Succ _) = 'True
   ('Succ m) < ('Succ n) = m < n
 \end{semiverbatim}
 \ExecuteMetaData[../agda/latex/BayHac.tex]{eq}
@@ -264,8 +264,8 @@ lookupBad ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
                        (p ∷ m < n ≡ 'True) 
                        (v ∷ Vec a n) :: a where
 
-  LookupUp a 'Zero     ('Succ n) 'Refl (x :> _)  = x
-  LookupUp a ('Succ m) ('Succ n) p     (_ :> xs) =
+  LookupUp a 'Zero     ('Succ n) 'Refl (x ':> _)  = x
+  LookupUp a ('Succ m) ('Succ n) p     (_ ':> xs) =
     LookupUp a m n p xs
 \end{semiverbatim}
 \ExecuteMetaData[../agda/latex/BayHac.tex]{lookup2}
@@ -289,34 +289,34 @@ lookup' (SSucc m) Refl (_ :> xs) = lookup' m Refl xs
 \ExecuteMetaData[../agda/latex/BayHac.tex]{lookup2}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Another Variation}
-\begin{semiverbatim}
-nth ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-      (m < n) ~ 'True => SNat m → Vec a n → a
-nth SZero     (a :> _)  = a
-nth (SSucc m) (_ :> as) = nth m as
-\end{semiverbatim}
-\end{frame}
+% \begin{frame}[fragile]\frametitle{Another Variation}
+% \begin{semiverbatim}
+% nth ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
+%       (m < n) ~ 'True => SNat m → Vec a n → a
+% nth SZero     (a :> _)  = a
+% nth (SSucc m) (_ :> as) = nth m as
+% \end{semiverbatim}
+% \end{frame}
 
-\begin{frame}[fragile]\frametitle{Lookup' vs Nth}
-\begin{semiverbatim}
-lookup' ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-           SNat m → m < n ≡ True → Vec a n → a
-lookup' _         _    Nil       = undefined
-lookup' SZero     Refl (x :> _)  = x
-lookup' (SSucc m) Refl (_ :> xs) = lookup' m Refl xs
-
-nth ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
-      (m < n) ~ 'True => SNat m → Vec a n → a
-nth _         Nil       =  undefined
-nth SZero     (a :> _)  = a
-nth (SSucc m) (_ :> as) = nth m as
-• Couldn't match type ‘'True’ with ‘'False’
-  Inaccessible code in
-    a pattern with constructor: Nil ∷ ∀ a. Vec a 'Zero,
-    in an equation for ‘nth’
-\end{semiverbatim}
-\end{frame}
+% \begin{frame}[fragile]\frametitle{Lookup' vs Nth}
+% \begin{semiverbatim}
+% lookup' ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
+%            SNat m → m < n ≡ True → Vec a n → a
+% lookup' _         _    Nil       = undefined
+% lookup' SZero     Refl (x :> _)  = x
+% lookup' (SSucc m) Refl (_ :> xs) = lookup' m Refl xs
+% 
+% nth ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat).
+%       (m < n) ~ 'True => SNat m → Vec a n → a
+% nth _         Nil       =  undefined
+% nth SZero     (a :> _)  = a
+% nth (SSucc m) (_ :> as) = nth m as
+% • Couldn't match type ‘'True’ with ‘'False’
+%   Inaccessible code in
+%     a pattern with constructor: Nil ∷ ∀ a. Vec a 'Zero,
+%     in an equation for ‘nth’
+% \end{semiverbatim}
+% \end{frame}
 
 \begin{frame}[fragile]\frametitle{Vectors in Dependent Haskell}
 \begin{semiverbatim}

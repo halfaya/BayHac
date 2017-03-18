@@ -88,14 +88,15 @@
 \end{code}
 %</fin>
 
+The first line of lookup below can be ommitted.
+
 %<*lookup>
 \begin{code}%
 \>\AgdaFunction{lookup} \AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{A} \AgdaSymbol{:} \AgdaPrimitiveType{Set}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{\{}\AgdaBound{n} \AgdaSymbol{:} \AgdaDatatype{ℕ}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaDatatype{Fin} \AgdaBound{n} \AgdaSymbol{→} \AgdaDatatype{Vec} \AgdaBound{A} \AgdaBound{n} \AgdaSymbol{→} \AgdaBound{A}\<%
 \\
 \>\AgdaFunction{lookup} \<[8]%
 \>[8]\AgdaSymbol{()} \<[17]%
-\>[17]\AgdaInductiveConstructor{[]} \<[30]%
-\>[30]\AgdaComment{{-}{-} can be omitted}\<%
+\>[17]\AgdaInductiveConstructor{[]}\<%
 \\
 \>\AgdaFunction{lookup} \<[8]%
 \>[8]\AgdaInductiveConstructor{zero} \<[17]%
@@ -160,6 +161,8 @@
 \end{code}
 %</lt>
 
+The first line of lookup' below is required.
+
 %<*lookup2>
 \begin{code}%
 \>\AgdaFunction{lookup'} \AgdaSymbol{:} \<[11]%
@@ -170,8 +173,7 @@
 \\
 \>\AgdaFunction{lookup'} \AgdaSymbol{\_} \<[17]%
 \>[17]\AgdaSymbol{()} \<[23]%
-\>[23]\AgdaInductiveConstructor{[]} \<[36]%
-\>[36]\AgdaComment{{-}{-} required}\<%
+\>[23]\AgdaInductiveConstructor{[]}\<%
 \\
 \>\AgdaFunction{lookup'} \AgdaInductiveConstructor{zero} \<[17]%
 \>[17]\AgdaInductiveConstructor{refl} \<[23]%

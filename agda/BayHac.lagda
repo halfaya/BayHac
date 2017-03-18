@@ -39,10 +39,12 @@ data Fin : ℕ → Set where
 \end{code}
 %</fin>
 
+The first line of lookup below can be ommitted.
+
 %<*lookup>
 \begin{code}
 lookup : {A : Set} → {n : ℕ} → Fin n → Vec A n → A
-lookup  ()       []           -- can be omitted
+lookup  ()       []
 lookup  zero     (x ∷ _ )  =  x
 lookup  (suc n)  (_ ∷ xs)  =  lookup n xs
 \end{code}
@@ -72,11 +74,13 @@ suc m  <  suc n  =  m < n
 \end{code}
 %</lt>
 
+The first line of lookup' below is required.
+
 %<*lookup2>
 \begin{code}
 lookup' :  {A : Set} → {n : ℕ} →
            (m : ℕ) → m < n ≡ true → Vec A n → A
-lookup' _        ()    []           -- required
+lookup' _        ()    []
 lookup' zero     refl  (x ∷ _ )  =  x
 lookup' (suc m)  p     (_ ∷ xs)  =  lookup' m p xs
 \end{code}
