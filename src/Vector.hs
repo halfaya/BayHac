@@ -95,9 +95,15 @@ vv ∷ Vec Nat ('Succ ('Succ 'Zero))
 vv = Zero :> Succ Zero :> Nil
 
 --ve ∷ Nat
---ve = LookupUp Nat Zero (Succ (Succ Zero)) Refl v
+--ve = LookupUp Nat 'Zero ('Succ ('Succ 'Zero)) 'Refl ('Zero ':> 'Succ 'Zero ':> 'Nil)
+-- In ghci, try running
+-- :set -XTypeInType
+-- :set -XTypeOperators
+-- :kind! LookupUp Nat 'Zero ('Succ ('Succ 'Zero)) 'Refl ('Zero ':> 'Succ 'Zero ':> 'Nil)
+-- This normalizes the kind.  But only evaluates one step.  Try this too:
+-- :kind! LookupUp Nat ('Succ 'Zero) ('Succ ('Succ 'Zero)) 'Refl ('Zero ':> 'Succ 'Zero ':> 'Nil)
 
-lookup' ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat). SNat m → m < n ≡ True → Vec a n → a
+lookup' ∷ ∀ (a ∷ Type)(m ∷ Nat)(n ∷ Nat). SNat m → m < n ≡ 'True → Vec a n → a
 -- note that if Refl is replaced by _ in the following line there is no compiler error
 --lookup' _         Refl     Nil      = undefined
 lookup' SZero     Refl (x :> _)  = x
