@@ -14,6 +14,13 @@ data Vec (A : Set) : ℕ → Set where
 \end{code}
 %</vec>
 
+%<*vecEx>
+\begin{code}
+v : Vec ℕ (suc (suc zero))
+v = zero ∷ suc zero ∷ []
+\end{code}
+%</vecEx>
+
 %<*plus>
 \begin{code}
 _+_ : ℕ → ℕ → ℕ

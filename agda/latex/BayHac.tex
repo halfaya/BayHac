@@ -30,6 +30,14 @@
 \end{code}
 %</vec>
 
+%<*vecEx>
+\begin{code}%
+\>\AgdaFunction{v} \AgdaSymbol{:} \AgdaDatatype{Vec} \AgdaDatatype{ℕ} \AgdaSymbol{(}\AgdaInductiveConstructor{suc} \AgdaSymbol{(}\AgdaInductiveConstructor{suc} \AgdaInductiveConstructor{zero}\AgdaSymbol{))}\<%
+\\
+\>\AgdaFunction{v} \AgdaSymbol{=} \AgdaInductiveConstructor{zero} \AgdaInductiveConstructor{∷} \AgdaInductiveConstructor{suc} \AgdaInductiveConstructor{zero} \AgdaInductiveConstructor{∷} \AgdaInductiveConstructor{[]}\<%
+\end{code}
+%</vecEx>
+
 %<*plus>
 \begin{code}%
 \>\AgdaFunction{\_+\_} \AgdaSymbol{:} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaDatatype{ℕ} \AgdaSymbol{→} \AgdaDatatype{ℕ}\<%
