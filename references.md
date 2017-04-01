@@ -108,7 +108,7 @@
 
 * Adam Chlipala, [Certified Programming with Dependent
   Types](http://adam.chlipala.net/cpdt/). Advanced use of Coq for
-  serious program verificiation.
+  serious program verification.
 
 ## Applications of Dependent Types
 
