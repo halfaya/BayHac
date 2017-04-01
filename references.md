@@ -30,7 +30,8 @@
 
 * Stephanie Weirich, [Designing Dependently-Typed Programming
   Languages](https://www.cs.uoregon.edu/research/summerschool/summer14/curriculum.html).
-  Video lectures and code for a simple language called Pi-Forall.
+  Video lectures and code for a simple language called Pi-Forall,
+  implemented in Haskell.
 
 ## Propositions as Types
 
