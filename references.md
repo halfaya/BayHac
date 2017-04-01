@@ -125,7 +125,7 @@
 
 * [Grammatical Framework](http://www.grammaticalframework.org/)
 
-### Homotopy Type Theory
+## Homotopy Type Theory
 
 * [Homotopy Type Theory](https://homotopytypetheory.org/). The
   standard textbook is available online here.
@@ -142,7 +142,7 @@
   the [GitHub repo](https://github.com/mortberg/cubicaltt) which contains an
   implementation in Haskell.
 
-### Category Theory and Functional Programming
+## Category Theory and Functional Programming
 
 * Ralf Hinze, [Generic Programming with
   Adjunctions](http://www.cs.ox.ac.uk/ralf.hinze/publications/LNCS-7470.pdf). One
