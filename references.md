@@ -106,6 +106,10 @@
   concentrates on tacics using LTAC, this book concentrates on Gallina
   and tactics using its own Ssreflect library.
 
+* Adam Chlipala, [Certified Programming with Dependent
+  Types](http://adam.chlipala.net/cpdt/). Advanced use of Coq for
+  serious program verificiation.
+
 ## Applications of Dependent Types
 
 ### Software Quality
