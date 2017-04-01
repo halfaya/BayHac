@@ -40,6 +40,9 @@
   See also one of his very entertaining presentations, for example at
   [Strange Loop](https://www.youtube.com/watch?v=IOiZatlZtGU).
 
+* [Dependent Types at
+  Work](http://www.cse.chalmers.se/~peterd/papers/DependentTypesAtWork.pdf)
+  also gives a very clear exposition.
 
 ## Languages
 
@@ -64,11 +67,13 @@
 
 * Ulf Norell and James Chapman, [Dependently Typed Programming in
   Agda](http://www.cse.chalmers.se/~ulfn/papers/afp08/tutorial.pdf). Excellent tutorial.
+
 * Ana Bove and Peter Dybjer, [Dependent Types at
   Work](http://www.cse.chalmers.se/~peterd/papers/DependentTypesAtWork.pdf).
-  Another great tutorial, complementing the first one. 
+  Another excellent tutorial, more theoretically oriented, complementing the first one. 
+
 * Jan Malakhovski, [Brutal [Meta]Introduction to Dependent Types in
-  Agda](http://oxij.org/note/BrutalDepTypes/).  Another great
+  Agda](http://oxij.org/note/BrutalDepTypes/).  Another valuable
   resource.
 
 ### Idris
