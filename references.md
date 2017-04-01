@@ -47,7 +47,7 @@
 
 * Richard Eisenberg, [Dependent Types in Haskell: Theory and
   Practice](http://cs.brynmawr.edu/~rae/papers/2016/thesis/eisenberg-thesis.pdf).
-  The primary source for dependent types in Haskell.  See it's
+  The primary source for dependent types in Haskell.  See its
   references for further background.
 
 * Richard Eisenberg, [Types and
