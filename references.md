@@ -19,7 +19,7 @@
   theory with extensive information on dependent types and their
   applications to formal proof.
 
-## Mimimalist Dependent Type Theories
+## Minimalist Dependently Typed Languages
 
 * Thierry Coquand, et. al., [A simple type-theoretic language:
   Mini-TT](http://www.cse.chalmers.se/~bengt/papers/GKminiTT.pdf).
