@@ -159,6 +159,10 @@
   to start with.  Based on lecture notes for a summer school, and
   contains exercises.
 
+* Jeremy Gibbons, [Calculating Functional Programs]
+  (http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/acmmpc-calcfp.pdf).
+  Also notes for a summer school course, and an excellent complement to Hinze's notes.
+
 ## Schools
 
 * [Oregon Programming Languages Summer
