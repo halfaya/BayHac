@@ -25,8 +25,7 @@
   Mini-TT](http://www.cse.chalmers.se/~bengt/papers/GKminiTT.pdf).
   Includes an implementation in Haskell.
 
-* Thorsten Altenkirch and Nicolas Oury, [ΠΣ: A Core Language for
-  Dependently Typed Programming](http://www.cs.nott.ac.uk/~psztxa/publ/pisigma.pdf) 
+* Thorsten Altenkirch, et. al., [ΠΣ: Dependent Types without the Sugar](http://www.cs.nott.ac.uk/~psztxa/publ/pisigma-new.pdf)
 
 * Stephanie Weirich, [Designing Dependently-Typed Programming
   Languages](https://www.cs.uoregon.edu/research/summerschool/summer14/curriculum.html).
@@ -153,14 +152,15 @@
 
 ## Category Theory and Functional Programming
 
+* Jeremy Gibbons, [Calculating Functional Programs](http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/acmmpc-calcfp.pdf).
+  Notes for a summer school course including a large number of exercises.  A very clear and well-written introduction to the
+  key concepts of the algebra of programming, and good to read before tackling Hinze's paper below.
+
 * Ralf Hinze, [Generic Programming with
   Adjunctions](http://www.cs.ox.ac.uk/ralf.hinze/publications/LNCS-7470.pdf). One
   of a series of related articles by Hinze, and probably the best one
   to start with.  Based on lecture notes for a summer school, and
   contains exercises.
-
-* Jeremy Gibbons, [Calculating Functional Programs](http://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/acmmpc-calcfp.pdf).
-  Also notes for a summer school course, and an excellent complement to Hinze's notes.
 
 ## Schools
 
