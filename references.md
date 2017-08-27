@@ -88,15 +88,10 @@
 ### Coq
 
 * Benjamin Pierce, et. al., [Software
-  Foundations](https://www.cis.upenn.edu/~bcpierce/sf/current/index.html).
+  Foundations](https://softwarefoundations.cis.upenn.edu/draft/).
   An interactive online textbook for learning Coq and its
   applications. The best introduction to Coq and dependent types
-  available.  Note that it will be reorganized into two volumes soon;
-  see [DeepSpec](https://deepspec.org/page/SF/).
-
-* Andrew Appel, [Verified Functional
-  Algorithms](https://www.cs.princeton.edu/~appel/vfa/).  Part of the
-  Software Foundations series, introducing exactly what its title says.
+  available.
 
 * Assia Mahboubi, Enrico Tassi, et. al., [Mathematical
   Components](https://math-comp.github.io/mcb/) Library used for the
@@ -166,8 +161,19 @@
 
 * [Oregon Programming Languages Summer
   School](https://www.cs.uoregon.edu/research/summerschool/summer17/).
-  I went in 2015 and will return in 2017.  An incredible two weeks of
+  I went in 2015 and 2017.  An incredible two weeks of
   type theory and applications; the program changes every year.  All
   lectures are videotaped in high quality and available online;
   replace "summer17" with the previous years to find them.  Many are
   also available on YouTube.
+
+* [DeepSpec Summer School 2017]
+  (https://deepspec.org/event/dsss17/index.html).
+  Lectures by experts on Coq and its applications.  All lectures were
+  filmed and are available on the YouTube channel.
+
+* [Summer School on Generic and Effectful Programming]
+  (https://www.cs.ox.ac.uk/projects/utgp/school/).
+  One-time school with lectures on various advanced topics, with lecture notes available.
+  I personally find Conor McBride's course on Datatypes of Datatypes to be particularly
+  valuable, but there are also courses on Idris and Haskell.
