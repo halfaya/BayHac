@@ -122,7 +122,8 @@
 * Georges Gonthier, et. al, [A Machine-Checked Proof of the Odd Order
   Theorem](https://hal.inria.fr/hal-00816699/file/main.pdf)
 
-* [Big Proof](https://www.newton.ac.uk/event/bpr)
+* [Big Proof](https://www.newton.ac.uk/event/bpr).  Note that [videos](https://www.newton.ac.uk/event/bpr/seminars)
+  of the talks are available.
 
 ### Computational Semantics
 
@@ -144,6 +145,12 @@
   [Thesis](http://www.cse.chalmers.se/~simonhu/misc/thesis.pdf) and
   the [GitHub repo](https://github.com/mortberg/cubicaltt) which contains an
   implementation in Haskell.
+
+* [Workshop on Homotopy Type Theory and Univalent Foundations of Mathematics](http://www.fields.utoronto.ca/activities/15-16/homotopy-type).
+  Mini-courses and research talks by experts.  Videos of all talks are available.
+
+* [Foundations of Mathematics: Univalent Foundations and Set Theory](http://fomus.weebly.com/talks-abstracts--videos.html).
+  Another excellent collection of lectures by experts.
 
 ## Category Theory and Functional Programming
 
