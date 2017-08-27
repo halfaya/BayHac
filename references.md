@@ -167,13 +167,11 @@
   replace "summer17" with the previous years to find them.  Many are
   also available on YouTube.
 
-* [DeepSpec Summer School 2017]
-  (https://deepspec.org/event/dsss17/index.html).
+* [DeepSpec Summer School 2017](https://deepspec.org/event/dsss17/index.html).
   Lectures by experts on Coq and its applications.  All lectures were
   filmed and are available on the YouTube channel.
 
-* [Summer School on Generic and Effectful Programming]
-  (https://www.cs.ox.ac.uk/projects/utgp/school/).
+* [Summer School on Generic and Effectful Programming](https://www.cs.ox.ac.uk/projects/utgp/school/).
   One-time school with lectures on various advanced topics, with lecture notes available.
   I personally find Conor McBride's course on Datatypes of Datatypes to be particularly
   valuable, but there are also courses on Idris and Haskell.
