@@ -164,6 +164,12 @@
   to start with.  Based on lecture notes for a summer school, and
   contains exercises.
 
+* Martin Hofmann [Syntax and Semantics of Dependent
+  Types](https://www.tcs.ifi.lmu.de/mitarbeiter/martin-hofmann/pdfs/syntaxandsemanticsof-dependenttypes.pdf).
+  Combines a very careful development of dependent types with an excellent explanation of how to represent
+  dependent types as categories with families. Also discusses and contrasts alternative categorical models
+  of dependent types and includes many exercises.
+
 ## Schools
 
 * [Oregon Programming Languages Summer
