@@ -147,7 +147,7 @@
   implementation in Haskell.
 
 * Anders Mörtberg, [Cubical Type Theory: lectures](https://github.com/mortberg/cubicaltt/tree/master/lectures).
-  A hands-on introduction to programming in cubical type theory, using the Haskell implementation.a
+  A hands-on introduction to programming in cubical type theory, using the Haskell implementation.
 
 * [Workshop on Homotopy Type Theory and Univalent Foundations of Mathematics](http://www.fields.utoronto.ca/activities/15-16/homotopy-type).
   Mini-courses and research talks by experts.  Videos of all talks are available.
