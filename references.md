@@ -27,6 +27,10 @@
 
 * Thorsten Altenkirch, et. al., [ΠΣ: Dependent Types without the Sugar](http://www.cs.nott.ac.uk/~psztxa/publ/pisigma-new.pdf)
 
+* Andres Löh, et. al., [A Tutorial Implementation of a Dependently Typed Lambda
+  Calculus](https://www.andres-loeh.de/LambdaPi/).
+  Excellent tuturial on implementing a minimal depdendently typed language LambdaPi in Haskell.
+
 * Stephanie Weirich, [Designing Dependently-Typed Programming
   Languages](https://www.cs.uoregon.edu/research/summerschool/summer14/curriculum.html).
   Video lectures and code for a simple language called Pi-Forall,
